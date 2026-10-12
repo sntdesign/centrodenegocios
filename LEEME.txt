@@ -1,0 +1,27 @@
+CENTRO DE NEGOCIOS — SUPABASE + VERCEL
+
+1. En Supabase > SQL Editor ejecuta supabase.sql.
+2. En Supabase > Project Settings > API Keys consigue URL y Secret key.
+3. En Vercel > Project > Settings > Environment Variables agrega:
+   SUPABASE_URL = https://TU-PROYECTO.supabase.co
+   SUPABASE_SECRET_KEY = sb_secret_... (solo Vercel)
+   ACCESS_KEY = una cadena aleatoria larga de 32+ caracteres (solo Vercel)
+4. En el repositorio GitHub sustituye index.html y crea carpeta api/state.js.
+   supabase.sql puede quedar en el repositorio: NO contiene contraseñas.
+5. Redeploy en Vercel (automático con el commit).
+6. Abre https://TU-DOMINIO.vercel.app/#TU_ACCESS_KEY
+   Conserva/compártelo como enlace privado; cualquiera que lo tenga puede modificar registros.
+7. Antes de cambiar de la versión anterior exporta un respaldo JSON y luego impórtalo
+   en la nueva versión para migrar tus datos locales. Si nunca registraste datos antes,
+   puedes empezar directamente.
+
+LÍMITES / PRECAUCIONES:
+- El enlace es una llave compartida, no seguridad por usuario. Sin login no se puede
+  distinguir a quién hizo cada cambio; perder el enlace es dar acceso total.
+- Nunca publiques ACCESS_KEY o SUPABASE_SECRET_KEY dentro del repositorio.
+- Se conserva por compatibilidad la imagen base64 dentro de JSON; muchas fotos
+  podrían llegar al límite de tamaño de petición de Vercel. Para crecer, conviene
+  migrar las fotos a Supabase Storage.
+- Guarda respaldos frecuentes. Si dos personas editan simultáneamente, puede salir
+  aviso de conflicto; recarga tras respaldar para evitar sobrescritura.
+- Si la app indica error al guardar, no cierres hasta exportar un respaldo.
